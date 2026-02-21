@@ -43,7 +43,11 @@ export default function CheckoutPage() {
       const res = await fetch("/api/create-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: totalINR, items: orderItems }),
+        body: JSON.stringify({
+          amount: totalINR,
+          items: orderItems,
+          customer: form,
+        }),
       });
       const data = await res.json();
       if (data.orderId) {
@@ -152,7 +156,7 @@ export default function CheckoutPage() {
               <span>Subtotal</span>
               <span className="text-brand-red">{format(totalINR)}</span>
             </div>
-            <p className="text-xs text-brand-brown-light mt-2">DTDC courier charges will be shared after order confirmation.</p>
+            <p className="text-xs text-brand-brown-light mt-2">Shipping charges extra as per market price and delivery location.</p>
             <button
               type="submit"
               disabled={loading}

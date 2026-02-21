@@ -33,8 +33,10 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
-# API keys - do not commit
+# API keys and credentials - do not commit
 razorpay-test-keys.txt
+credentials.txt
+vercel-env-variables.txt
 
 # vercel
 .vercel

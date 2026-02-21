@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 import { getOrder } from "@/lib/order-store";
+import { updateOrderPaymentId } from "@/lib/orders-db";
 
 const RAZORPAY_KEY_SECRET = process.env.RAZORPAY_KEY_SECRET!;
 
@@ -26,6 +27,12 @@ export async function POST(req: NextRequest) {
         { error: "Invalid signature", verified: false },
         { status: 400 }
       );
+    }
+
+    try {
+      await updateOrderPaymentId(orderId, paymentId);
+    } catch (dbErr) {
+      console.error("MongoDB update error:", dbErr);
     }
 
     const orderData = getOrder(orderId);

@@ -35,7 +35,7 @@ export default function ContactPage() {
             Chat on WhatsApp
           </a>
           <p className="text-sm text-brand-brown-light">+91 95819 63980</p>
-          <p className="mt-4 text-sm text-brand-brown-light">hello@alientrade.com</p>
+          <p className="mt-4 text-sm text-brand-brown-light">aideveloperindia@gmail.com</p>
         </div>
 
         <form onSubmit={handleSubmit} className="flex-1 space-y-4">

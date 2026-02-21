@@ -113,7 +113,7 @@ export default function ProductDetailPage() {
             </button>
           </div>
           <p className="mt-2 text-xs text-brand-brown-light">
-            Courier charges (DTDC) extra as per market rates.
+            Shipping charges extra as per market price and delivery location.
           </p>
         </div>
       </div>

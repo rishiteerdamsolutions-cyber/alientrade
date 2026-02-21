@@ -74,7 +74,7 @@ export default function CartPage() {
           <span className="text-lg font-medium text-brand-brown">Subtotal</span>
           <span className="text-xl font-bold text-brand-red">{format(totalINR)}</span>
         </div>
-        <p className="text-xs text-brand-brown-light mb-4">Courier charges (DTDC) will be added at checkout.</p>
+        <p className="text-xs text-brand-brown-light mb-4">Shipping charges extra as per market price and delivery location.</p>
         <Link
           href="/checkout"
           className="block w-full text-center rounded-lg bg-brand-red px-6 py-3 font-semibold text-white hover:bg-brand-red-light"

@@ -29,7 +29,7 @@ export default function SubscriptionsPage() {
         Save more with our quarterly, half-yearly, and yearly packs. One-time or recurring.
       </p>
       <p className="text-sm text-brand-brown-light mb-8 -mt-4">
-        Prices exclude courier charges. DTDC shipping will be charged at market rates.
+        Shipping charges extra as per market price and delivery location.
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">

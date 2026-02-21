@@ -49,8 +49,8 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-3 text-brand-gold">Contact</h3>
             <div className="flex flex-col gap-2 text-sm text-brand-cream/70">
-              <a href="mailto:hello@alientrade.com" className="hover:text-brand-gold transition-colors">
-                hello@alientrade.com
+              <a href="mailto:aideveloperindia@gmail.com" className="hover:text-brand-gold transition-colors">
+                aideveloperindia@gmail.com
               </a>
               <p>India</p>
               <p className="mt-2 text-xs text-brand-cream/40">
@@ -60,8 +60,23 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-brand-cream/10 mt-8 pt-6 text-center text-xs text-brand-cream/40">
-          &copy; {new Date().getFullYear()} AlienTrade. All rights reserved. Made with care in India.
+        <div className="border-t border-brand-cream/10 mt-8 pt-6 text-center text-xs text-brand-cream/40 space-y-2">
+          <p>&copy; {new Date().getFullYear()} AlienTrade. All rights reserved. Made with care in India.</p>
+          <a
+            href="https://aideveloperindia.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 hover:text-brand-gold transition-colors"
+          >
+            <Image
+              src="/A%20logo.png"
+              alt="A-logo"
+              width={24}
+              height={24}
+              className="h-6 w-auto"
+            />
+            <span>Built by A-logo AI Developer</span>
+          </a>
         </div>
       </div>
     </footer>

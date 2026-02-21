@@ -6,12 +6,22 @@ import { useSearchParams } from "next/navigation";
 import { CheckCircle } from "lucide-react";
 import { useOrder } from "@/context/OrderContext";
 import { useCart } from "@/context/CartContext";
+import DownloadReceiptButton from "@/components/DownloadReceiptButton";
+
+interface OrderReceipt {
+  orderId: string;
+  paymentId?: string;
+  amountINR: number;
+  items: { productName: string; weight: number; quantity: number; priceINR: number }[];
+  customer?: { name: string; email: string; phone: string; address: string; city: string; state: string; zip: string; country: string };
+}
 
 function SuccessContent() {
   const searchParams = useSearchParams();
   const { lastOrder, setLastOrder } = useOrder();
   const { clearCart } = useCart();
   const [loading, setLoading] = useState(true);
+  const [receiptData, setReceiptData] = useState<OrderReceipt | null>(null);
 
   useEffect(() => {
     const orderId = searchParams.get("razorpay_order_id") || searchParams.get("order_id");
@@ -62,6 +72,14 @@ function SuccessContent() {
     }
   }, [searchParams, setLastOrder, clearCart]);
 
+  useEffect(() => {
+    if (!lastOrder?.orderId) return;
+    fetch(`/api/order-receipt?orderId=${encodeURIComponent(lastOrder.orderId)}`)
+      .then((r) => r.json())
+      .then((data) => setReceiptData(data))
+      .catch(() => setReceiptData(null));
+  }, [lastOrder?.orderId]);
+
   if (loading && !lastOrder) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-16 text-center">
@@ -97,6 +115,12 @@ function SuccessContent() {
           <p className="mt-2 font-bold text-brand-red">
             Total: ₹{lastOrder.amountINR.toLocaleString("en-IN")}
           </p>
+        </div>
+      )}
+
+      {lastOrder && (
+        <div className="mb-6">
+          <DownloadReceiptButton order={lastOrder} customer={receiptData?.customer} />
         </div>
       )}
 
