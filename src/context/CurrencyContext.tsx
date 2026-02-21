@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState } from "react";
 import {
   CurrencyCode,
   CurrencyInfo,
@@ -21,11 +21,7 @@ interface CurrencyContextType {
 const CurrencyContext = createContext<CurrencyContextType | undefined>(undefined);
 
 export function CurrencyProvider({ children }: { children: React.ReactNode }) {
-  const [currency, setCurrency] = useState<CurrencyCode>("USD");
-
-  useEffect(() => {
-    setCurrency(detectCurrency());
-  }, []);
+  const [currency, setCurrency] = useState<CurrencyCode>(() => detectCurrency());
 
   const value: CurrencyContextType = {
     currency,

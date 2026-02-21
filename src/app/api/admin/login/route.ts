@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
       path: "/",
     });
     return res;
-  } catch (err) {
+  } catch {
     return NextResponse.json({ error: "Login failed" }, { status: 500 });
   }
 }

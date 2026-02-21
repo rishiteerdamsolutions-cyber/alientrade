@@ -6,6 +6,7 @@ import { SubscriptionPlan } from "@/data/products";
 interface SubscriptionCardProps {
   plan: SubscriptionPlan;
   formatPrice: (amount: number) => string;
+  recommendedProduct?: "red-chilli-powder" | "turmeric-powder";
   onSelectOneTime: (productId: string) => void;
   onSelectCombo: () => void;
 }
@@ -13,6 +14,7 @@ interface SubscriptionCardProps {
 export default function SubscriptionCard({
   plan,
   formatPrice,
+  recommendedProduct,
   onSelectOneTime,
   onSelectCombo,
 }: SubscriptionCardProps) {
@@ -42,14 +44,32 @@ export default function SubscriptionCard({
         <div className="flex gap-2">
           <button
             onClick={() => onSelectOneTime("red-chilli-powder")}
-            className="flex-1 rounded-lg bg-brand-red/10 px-3 py-2 text-sm font-medium text-brand-red hover:bg-brand-red/20"
+            className={`relative flex-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+              recommendedProduct === "turmeric-powder"
+                ? "bg-brand-red/20 ring-2 ring-brand-red text-brand-red hover:bg-brand-red/30"
+                : "bg-brand-red/10 text-brand-red hover:bg-brand-red/20"
+            }`}
           >
+            {recommendedProduct === "turmeric-powder" && (
+              <span className="absolute -top-2 -right-1 rounded bg-brand-red px-1.5 py-0.5 text-[10px] font-bold text-white">
+                Recommended
+              </span>
+            )}
             Chilli {formatPrice(plan.priceChilliINR)}
           </button>
           <button
             onClick={() => onSelectOneTime("turmeric-powder")}
-            className="flex-1 rounded-lg bg-brand-gold/20 px-3 py-2 text-sm font-medium text-brand-brown hover:bg-brand-gold/30"
+            className={`relative flex-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+              recommendedProduct === "red-chilli-powder"
+                ? "bg-brand-gold/30 ring-2 ring-brand-gold text-brand-brown hover:bg-brand-gold/40"
+                : "bg-brand-gold/20 text-brand-brown hover:bg-brand-gold/30"
+            }`}
           >
+            {recommendedProduct === "red-chilli-powder" && (
+              <span className="absolute -top-2 -right-1 rounded bg-brand-red px-1.5 py-0.5 text-[10px] font-bold text-white">
+                Recommended
+              </span>
+            )}
             Turmeric {formatPrice(plan.priceTurmericINR)}
           </button>
         </div>

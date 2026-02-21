@@ -21,7 +21,6 @@ export default function ProductsPage() {
             name={p.name}
             tagline={p.tagline}
             gradient={p.gradient}
-            iconEmoji={p.iconEmoji}
             imageSrc={p.id === "red-chilli-powder" ? "/images/products/PRODUCT1/CHILLI-ALLPACK.png" : "/images/products/PRODUCT2/TURMERIC-ALLPACK.png"}
             minPrice={p.packSizes[0].priceINR}
             formatPrice={format}

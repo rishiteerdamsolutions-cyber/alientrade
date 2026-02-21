@@ -2,14 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useCurrency } from "@/context/CurrencyContext";
 import RazorpayCheckout from "@/components/RazorpayCheckout";
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const { items, totalINR, clearCart } = useCart();
+  const { items, totalINR } = useCart();
   const { format } = useCurrency();
   const [loading, setLoading] = useState(false);
   const [orderId, setOrderId] = useState<string | null>(null);
@@ -55,7 +54,7 @@ export default function CheckoutPage() {
       } else {
         alert(data.error || "Failed to create order");
       }
-    } catch (err) {
+    } catch {
       alert("Something went wrong. Please try again.");
     } finally {
       setLoading(false);

@@ -41,7 +41,7 @@ function SuccessContent() {
         });
         sessionStorage.removeItem("orderSuccess");
         clearCart();
-      } catch (_) {}
+      } catch {}
     } else if (orderId && paymentId && signature) {
       fetch("/api/verify-payment", {
         method: "POST",
@@ -68,7 +68,7 @@ function SuccessContent() {
         .catch(() => {})
         .finally(() => setLoading(false));
     } else {
-      setLoading(false);
+      queueMicrotask(() => setLoading(false));
     }
   }, [searchParams, setLastOrder, clearCart]);
 

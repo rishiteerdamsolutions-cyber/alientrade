@@ -9,7 +9,6 @@ interface ProductCardProps {
   name: string;
   tagline: string;
   gradient: string;
-  iconEmoji: string;
   imageSrc: string;
   minPrice: number;
   formatPrice: (amount: number) => string;
@@ -20,7 +19,6 @@ export default function ProductCard({
   name,
   tagline,
   gradient,
-  iconEmoji,
   imageSrc,
   minPrice,
   formatPrice,

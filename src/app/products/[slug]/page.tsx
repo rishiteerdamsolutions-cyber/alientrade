@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { getProductBySlug } from "@/data/products";
+import { getProductBySlug, products } from "@/data/products";
 import PackSelector from "@/components/PackSelector";
 import { useCart } from "@/context/CartContext";
 import { useCurrency } from "@/context/CurrencyContext";
@@ -148,6 +148,45 @@ export default function ProductDetailPage() {
               <p className="text-center text-sm font-medium py-2 text-brand-brown">{pack.label}</p>
             </button>
           ))}
+        </div>
+      </div>
+
+      <div className="mt-16">
+        <h2 className="text-xl font-bold text-brand-brown mb-4">You might also like</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {products
+            .filter((p) => p.id !== product.id)
+            .flatMap((otherProduct) =>
+              otherProduct.packSizes.map((pack) => (
+                <Link
+                  key={`${otherProduct.id}-${pack.weight}`}
+                  href={`/products/${otherProduct.slug}`}
+                  className="group relative rounded-xl overflow-hidden border-2 border-brand-brown/20 hover:border-brand-red/50 transition-all bg-white shadow-sm hover:shadow-md"
+                >
+                  {pack.bestSeller && (
+                    <span className="absolute top-2 left-2 z-10 rounded-full bg-brand-red px-2 py-0.5 text-xs font-bold text-white">
+                      Best Seller
+                    </span>
+                  )}
+                  <div className={`relative aspect-square bg-gradient-to-br ${otherProduct.gradient} flex items-center justify-center`}>
+                    {pack.imagePath && (
+                      <Image
+                        src={pack.imagePath}
+                        alt={`${otherProduct.name} ${pack.label}`}
+                        fill
+                        className="object-contain p-3 group-hover:scale-105 transition-transform"
+                        sizes="(max-width: 640px) 50vw, 20vw"
+                      />
+                    )}
+                  </div>
+                  <div className="p-3 text-center">
+                    <p className="font-semibold text-brand-brown text-sm">{otherProduct.shortName}</p>
+                    <p className="text-brand-red font-bold">{pack.label}</p>
+                    <p className="text-xs text-brand-brown-light mt-0.5">{format(pack.priceINR)}</p>
+                  </div>
+                </Link>
+              ))
+            )}
         </div>
       </div>
 

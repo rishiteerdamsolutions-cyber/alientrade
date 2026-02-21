@@ -92,7 +92,6 @@ export default function Home() {
                 name={p.name}
                 tagline={p.tagline}
                 gradient={p.gradient}
-                iconEmoji={p.iconEmoji}
                 imageSrc={p.id === "red-chilli-powder" ? "/images/products/PRODUCT1/CHILLI-ALLPACK.png" : "/images/products/PRODUCT2/TURMERIC-ALLPACK.png"}
                 minPrice={minPrices[i] ?? 0}
                 formatPrice={format}
@@ -110,7 +109,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
             <div>
               <div className="relative h-32 rounded-xl overflow-hidden mb-3">
-                <img src="/images/2.png" alt="Homemade Quality" className="w-full h-full object-cover" />
+                <Image src="/images/2.png" alt="Homemade Quality" fill className="object-cover" sizes="(max-width: 640px) 100vw, 33vw" />
               </div>
               <h3 className="font-semibold text-brand-brown">Homemade Quality</h3>
               <p className="text-sm text-brand-brown-light mt-1">
@@ -119,7 +118,7 @@ export default function Home() {
             </div>
             <div>
               <div className="relative h-32 rounded-xl overflow-hidden mb-3">
-                <img src="/images/3.png" alt="Pure Ingredients" className="w-full h-full object-cover" />
+                <Image src="/images/3.png" alt="Pure Ingredients" fill className="object-cover" sizes="(max-width: 640px) 100vw, 33vw" />
               </div>
               <h3 className="font-semibold text-brand-brown">Pure Ingredients</h3>
               <p className="text-sm text-brand-brown-light mt-1">
@@ -128,7 +127,7 @@ export default function Home() {
             </div>
             <div>
               <div className="relative h-32 rounded-xl overflow-hidden mb-3">
-                <img src="/images/4.png" alt="Worldwide Shipping" className="w-full h-full object-cover" />
+                <Image src="/images/4.png" alt="Worldwide Shipping" fill className="object-cover" sizes="(max-width: 640px) 100vw, 33vw" />
               </div>
               <h3 className="font-semibold text-brand-brown">Worldwide Shipping</h3>
               <p className="text-sm text-brand-brown-light mt-1">

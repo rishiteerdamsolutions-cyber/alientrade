@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { subscriptionPlans } from "@/data/products";
 import SubscriptionCard from "@/components/SubscriptionCard";
 import { useCart } from "@/context/CartContext";
@@ -8,6 +9,7 @@ import { useCurrency } from "@/context/CurrencyContext";
 export default function SubscriptionsPage() {
   const { addItem } = useCart();
   const { format } = useCurrency();
+  const [selectedInPlan, setSelectedInPlan] = useState<Record<string, "red-chilli-powder" | "turmeric-powder">>({});
 
   const handleSelectCombo = (planId: string) => {
     const plan = subscriptionPlans.find((p) => p.id === planId)!;
@@ -38,10 +40,12 @@ export default function SubscriptionsPage() {
             key={plan.id}
             plan={plan}
             formatPrice={format}
+            recommendedProduct={selectedInPlan[plan.id]}
             onSelectOneTime={(productId) => {
               const isChilli = productId === "red-chilli-powder";
               const weight = isChilli ? plan.weightKg : Math.min(plan.weightKg, 3);
               const price = isChilli ? plan.priceChilliINR : plan.priceTurmericINR;
+              setSelectedInPlan((prev) => ({ ...prev, [plan.id]: productId as "red-chilli-powder" | "turmeric-powder" }));
               addItem({
                 productId,
                 productName: isChilli ? "Red Chilli Powder" : "Turmeric Powder",
